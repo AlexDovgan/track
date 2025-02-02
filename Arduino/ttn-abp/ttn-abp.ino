@@ -1,3 +1,5 @@
+
+
 /*******************************************************************************
  * Copyright (c) 2015 Thomas Telkamp and Matthijs Kooijman
  *
@@ -34,6 +36,7 @@
 #include <SPI.h>
 #include <Adafruit_GPS.h>
 #include <avr/sleep.h>
+
 
 #define CFG_eu868 1
 

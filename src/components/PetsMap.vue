@@ -26,8 +26,8 @@ export default {
     }),
     position() {
       return {
-        lat: this.currentData.payload_fields.lat,
-        lng: this.currentData.payload_fields.long
+        lat: this.currentData.uplink_message.decoded_payload.lat,
+        lng: this.currentData.uplink_message.decoded_payload.long
       };
     }
   },
@@ -36,28 +36,6 @@ export default {
     msg: String
   },
   mounted() {
-    this.$db
-      .collection("last_data")
-      .doc("first")
-      .onSnapshot(doc => {
-        this.$store.commit("setCurrentData", doc.data());
-        var cur_timestamp = new Date().getTime();
-        if (
-          cur_timestamp - new Date(doc.data().metadata.time).getTime() <
-          1000 * 60 * 10
-        )
-          this.$store.commit("setOnline");
-
-        this.$store.commit("setLastOnlineTime",new Date(doc.data().metadata.time));
-        let timeout = () => {
-          this.$store.commit("setOffline");
-          this.timer = setTimeout(timeout, 10000 * 60);
-        };
-        clearTimeout(this.timer);
-        this.timer = setTimeout(timeout, 10000 * 60);
-        //this.current_data = doc.data();
-        console.log("Current data: ", doc.data());
-      });
   }
 };
 </script>

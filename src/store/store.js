@@ -5,10 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    lastOnlineTime:new Date(0),
-    isOnline:false,
+    lastOnlineTime: new Date(0),
+    isOnline: false,
     currentData: {
-      payload_fields: { lat: 46.3030583, long: 30.4951066 }
+      uplink_message: {
+        decoded_payload:
+        {
+          lat: 46.3030583, long: 30.4951066
+        }
+      }
     }
   },
   mutations: {
@@ -18,11 +23,11 @@ export default new Vuex.Store({
     setLastOnlineTime(state, data) {
       state.lastOnlineTime = data;
     },
-    setOnline(state){
-      state.isOnline=true;
+    setOnline(state) {
+      state.isOnline = true;
     },
-    setOffline(state){
-      state.isOnline=false;
+    setOffline(state) {
+      state.isOnline = false;
     }
   },
   actions: {

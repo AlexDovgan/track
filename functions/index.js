@@ -2,7 +2,7 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const puppeteer = require('puppeteer');
 var express = require('express');
-const uuidv1 = require('uuid/v1');
+const uuidv1 = require('uuid');
 const file = require('fs');
 const util = require('util');
 const spawn = require('child-process-promise').spawn;
@@ -18,13 +18,14 @@ app.use(cors({ origin: true }));
 
 app.post('/uplink', async function (req, res, next) {
   let db = admin.firestore();
-  console.log(req.body);
+  //console.log(req.body);
   //if (req.body.payload_fields.lat !== 0 && req.body.payload_fields.long !== 0) {
     await db.collection("history").add(req.body);
-    await db.collection("last_data").doc(req.body.dev_id).set(req.body);
+   // await db.collection("last_data").doc(req.body.dev_id).set(req.body);
   //}
   res.json({ result: true });
 });
+
 app.post('/plate', async function (req, res, next) {
   console.log(req.body);
 });

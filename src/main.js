@@ -36,11 +36,13 @@ Vue.use(VueGoogleMaps, {
   language: 'ru',
 
 })
-
-
-new Vue({
+const vue = new Vue({
   store,
-  db: makeDb(),
+  db:makeDb(),
   render: h => h(App),
-}).$mount('#app');
+});
+
+vue.$mount('#app');
+
+
 
